@@ -1,27 +1,59 @@
+# Jaycee Alipio
+# 8/27/2023
+# Project: Clock in system that checks text file
+
+import datetime
+
+# Opens file to search through list
 def fileOpen():
     try:
         # Note: Change path when using different system
         with open(r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt', "r", encoding="utf-8") as file:
-            id_name_pairs = []
+            id_name_title_pairs = []
         
             for line in file:
-                parts = line.strip().split(" ", 1)  # Split at the first space
-                if len(parts) >= 2:
+                parts = line.strip().split(" ", 2)  # Split at the first space
+                if len(parts) >= 3:
                     id_value = int(parts[0])
                     name_value = parts[1]
-                    id_name_pairs.append({"ID": id_value, "Name": name_value}) 
-                    
-        #for pair in id_name_pairs:
-        #    print(f"ID: {pair['ID']}, Name: {pair['Name']}")
+                    role_value = parts[2]
+                    id_name_title_pairs.append({"ID": id_value, "Name": name_value, "Role": role_value, "Status": "Out", "Time": None}) 
+
     except FileNotFoundError:
         print("This file was not found!")
         
-    return id_name_pairs
+    return id_name_title_pairs
+
+# Attach a status of clocked in/out while attaching time
+def idFound(user, name, role):
+    role_clock_in_behaviors = {
+        "President": "Clocked In",
+        "Vice President": "Clocked In",
+        "Director of Academic Affairs": "Clocked In",
+        "Director of Budget and Finance": "Clocked In",
+        "Director of Campus Events": "Clocked In",
+        "Director of Constitution and Standing Rules": "Clocked In",
+        "Director of Public Relations": "Clocked In",
+        "Director of Student Advocacy": "Clocked In",
+        "Director of Student Organization": "Clocked In",
+        "Director of Student Services": "Clocked In",
+        "Director of Sustainability": "Clocked In",   
+    }
+
+    clock_in_behavior = role_clock_in_behaviors.get(role, "Clocked In") # Default to "Clocked In" if role not found
+    status = user["Status"]
+    
+    if status == "Out":
+        user["Status"] = "In"
+        user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
+    else:
+        user["Status"] = "Out"
+        user["Time"] = None
 
 def main():
-    id_name_pairs = fileOpen()
+    id_name_title_pairs = fileOpen()
     
-    if not id_name_pairs:
+    if not id_name_title_pairs:
         return
     
     while True:
@@ -33,9 +65,9 @@ def main():
             break
         found = False
         
-        for pair in id_name_pairs:
-            if pair["ID"] == search_id:
-                print(f"ID: {pair['ID']}, Name: {pair['Name']}")
+        for user in id_name_title_pairs:
+            if user["ID"] == search_id:
+                idFound(user, user["Name"], user["Role"])
                 found = True
                 break
     
