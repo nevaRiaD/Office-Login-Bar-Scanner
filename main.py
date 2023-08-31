@@ -24,6 +24,9 @@ def fileOpen():
         
     return id_name_title_pairs
 
+def fileWrite():
+    
+
 # Attach a status of clocked in/out while attaching time
 def idFound(user, name, role):
     role_clock_in_behaviors = {
@@ -46,9 +49,11 @@ def idFound(user, name, role):
     if status == "Out":
         user["Status"] = "In"
         user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
+        return "In"
     else:
         user["Status"] = "Out"
-        user["Time"] = None
+        user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
+        return "Out"
 
 def main():
     id_name_title_pairs = fileOpen()
@@ -57,7 +62,7 @@ def main():
         return
     
     while True:
-        print("Welcome to the Moorpark ASMC Office Login!")
+        print("\nWelcome to the Moorpark ASMC Office Login!")
         search_id = int(input("Enter the ID number to search for (or enter -1 to exit): "))
     
         if search_id == -1:
@@ -67,7 +72,14 @@ def main():
         
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
-                idFound(user, user["Name"], user["Role"])
+                status = idFound(user, user["Name"], user["Role"])
+                print(f"User: {user['Name']} (ID: {user['ID']})")
+                print(f"Role: {user['Role']}")
+                print(f"Status: Clocked {status}")
+                if status == "In":
+                    print(f"Clocked In Time: {user['Time']}")
+                else:
+                    print(f"Clocked Out Time: {user['Time']}")
                 found = True
                 break
     
