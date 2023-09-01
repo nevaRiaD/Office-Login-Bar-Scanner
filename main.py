@@ -4,6 +4,7 @@
 
 import datetime
 import os
+import re
 
 # Change path if files are moved
 ID_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt'
@@ -118,12 +119,42 @@ def idFound(user, name, role):
         if check == "yes":
             user["Status"] = "Out"
             user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
+            
             return "Out"
         else:
             pass
 
-def clockTime():
-    print("day")
+def time_to_seconds(time_str):
+    hours, minutes, seconds = map(int, time_str.split(':'))
+    return hours * 3600 + minutes * 60 + seconds
+
+def clockTime(file_path):
+    clocked_in_time = None
+    clocked_out_time = None
+    
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    
+    for line in lines:
+        if "clocked In" in line:
+            match = re.search(r'\d{2}:\d{2}:\d{2}', line)
+            if match:
+                clocked_in_time = match.group(0)
+        elif "clocked Out" in line:
+            match = re.search(r'\d{2}:\d{2}:\d{2}', line)
+            if match:
+                clocked_out_time = match.group(0)
+                
+    if clocked_in_time and clocked_out_time:
+        clocked_in_seconds = time_to_seconds(clocked_in_time)
+        clocked_out_seconds = time_to_seconds(clocked_out_time)
+        
+        total_seconds = clocked_out_seconds - clocked_in_seconds
+        total_time = f"{total_seconds // 3600:02d}:{(total_seconds % 3600) // 60:02d}:{total_seconds % 60:02d}"
+        
+        return total_time
+    else:
+        pass
 
 def main():
     id_name_title_pairs = fileOpen()
@@ -156,6 +187,7 @@ def main():
                     
                 else:
                     print(f"Clocked Out Time: {user['Time']}")
+                    print(f"Total Time: {clockTime(created_file_path)}")
                     fileWrite(created_file_path, user["Name"], user["Time"], status)
                 found = True
                 break
