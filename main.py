@@ -3,6 +3,9 @@
 # Project: Clock in system that checks text file
 
 import datetime
+import os
+
+logs = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
 
 # Opens file to search through list
 def fileOpen():
@@ -24,9 +27,25 @@ def fileOpen():
         
     return id_name_title_pairs
 
-def fileWrite():
-    print("Awesome")
-
+def fileCreate(directory, file_name, name):
+    try:
+        file_create_name = str(file_name) + " " + name.replace('_', ' ') + ".txt"
+        file_path = os.path.join(directory, file_create_name)
+        
+        if not os.path.exists(file_path):
+            with open(file_path, 'w') as file:
+                # File is created here
+                print(f"File '{file_path}' has been created.")
+        else:
+            pass
+    except FileExistsError:
+        pass
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        
+def fileAppend():
+    print("yay")
+    
 # Attach a status of clocked in/out while attaching time
 def idFound(user, name, role):
     role_clock_in_behaviors = {
@@ -73,9 +92,11 @@ def main():
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
                 status = idFound(user, user["Name"], user["Role"])
-                print(f"User: {user['Name']} (ID: {user['ID']})")
-                print(f"Role: {user['Role']}")
+                print(f"User: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
+                print(f"Role: {user['Role'].replace('_', ' ')}")
                 print(f"Status: Clocked {status}")
+                fileCreate(logs, user["ID"], user["Name"])
+                
                 if status == "In":
                     print(f"Clocked In Time: {user['Time']}")
                 else:
