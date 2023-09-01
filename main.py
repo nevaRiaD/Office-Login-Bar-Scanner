@@ -5,6 +5,7 @@
 import datetime
 import os
 
+# Change path if files are moved
 ID_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt'
 logs = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
 current_datetime = datetime.datetime.now()
@@ -13,12 +14,11 @@ formatted_date = current_datetime.strftime("%m-%d-%Y")
 # Opens file to search through list
 def fileOpen():
     try:
-        # Note: Change path when using different system
         with open(ID_path, "r", encoding="utf-8") as file:
             id_name_title_pairs = []
         
             for line in file:
-                parts = line.strip().split(" ", 2)  # Split at the first space
+                parts = line.strip().split(" ", 2)
                 if len(parts) >= 3:
                     id_value = int(parts[0])
                     name_value = parts[1]
@@ -87,6 +87,7 @@ def dateCheck(file_path):
         return False
 
 def idFound(user, name, role):
+    name = name.replace('_', ' ')
     role_clock_in_behaviors = {
         "President": "Clocked In",
         "Vice President": "Clocked In",
@@ -105,13 +106,24 @@ def idFound(user, name, role):
     status = user["Status"]
     
     if status == "Out":
-        user["Status"] = "In"
-        user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
-        return "In"
+        check = str(input(f"Would you like to clock in for {name}? [yes] [no] : "))
+        if check == "yes":
+            user["Status"] = "In"
+            user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
+            return "In"
+        else:
+            pass
     else:
-        user["Status"] = "Out"
-        user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
-        return "Out"
+        check = str(input(f"Would you like to clock out {name}? [yes] [no] : "))
+        if check == "yes":
+            user["Status"] = "Out"
+            user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
+            return "Out"
+        else:
+            pass
+
+def clockTime():
+    print("day")
 
 def main():
     id_name_title_pairs = fileOpen()
@@ -131,7 +143,7 @@ def main():
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
                 status = idFound(user, user["Name"], user["Role"])
-                print(f"User: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
+                print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")
                 print(f"Status: Clocked {status}")
                 print(f"Date: {formatted_date}")
