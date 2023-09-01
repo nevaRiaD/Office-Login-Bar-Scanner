@@ -25,7 +25,7 @@ def fileOpen():
     return id_name_title_pairs
 
 def fileWrite():
-    
+    print("Awesome")
 
 # Attach a status of clocked in/out while attaching time
 def idFound(user, name, role):
