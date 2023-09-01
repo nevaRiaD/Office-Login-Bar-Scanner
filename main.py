@@ -5,13 +5,16 @@
 import datetime
 import os
 
+ID_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt'
 logs = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
+current_datetime = datetime.datetime.now()
+formatted_date = current_datetime.strftime("%m-%d-%Y")
 
 # Opens file to search through list
 def fileOpen():
     try:
         # Note: Change path when using different system
-        with open(r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt', "r", encoding="utf-8") as file:
+        with open(ID_path, "r", encoding="utf-8") as file:
             id_name_title_pairs = []
         
             for line in file:
@@ -36,17 +39,53 @@ def fileCreate(directory, file_name, name):
             with open(file_path, 'w') as file:
                 # File is created here
                 print(f"File '{file_path}' has been created.")
+                return file_path
         else:
-            pass
+            return file_path
     except FileExistsError:
         pass
     except Exception as e:
         print(f"An error occurred: {str(e)}")
+    return None
+
+def fileWrite(file_path, name ,time, status):
+    try:
+        name = name.replace('_', ' ')
+        if not dateCheck(file_path):
+                with open(file_path, "a") as file:
+                    file.write(f"\n{formatted_date}\n")
+                    
+        with open(file_path, "a") as file: 
+            file.write(f"- {name} clocked {status} at {time}\n")
+            
+        print(f"Log has been recorded to '{file_path}' successfully!")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
         
-def fileAppend():
-    print("yay")
+def dateCheck(file_path):
+    try:
+        last_date = None
+        
+        with open(file_path, "r") as file:
+            lines = file.readlines()
+            
+            for line in reversed(lines):
+                line = line.strip()
+                try:
+                    last_date = datetime.datetime.strptime(line, "%m-%d-%Y").date()
+                    break
+                except ValueError:
+                    continue
+        
+        if last_date and last_date == datetime.date.today():
+            return True
+        else:
+            return False
     
-# Attach a status of clocked in/out while attaching time
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return False
+
 def idFound(user, name, role):
     role_clock_in_behaviors = {
         "President": "Clocked In",
@@ -95,12 +134,17 @@ def main():
                 print(f"User: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")
                 print(f"Status: Clocked {status}")
-                fileCreate(logs, user["ID"], user["Name"])
+                print(f"Date: {formatted_date}")
+                
+                created_file_path = fileCreate(logs, user["ID"], user["Name"])
                 
                 if status == "In":
                     print(f"Clocked In Time: {user['Time']}")
+                    fileWrite(created_file_path, user["Name"], user["Time"], status)
+                    
                 else:
                     print(f"Clocked Out Time: {user['Time']}")
+                    fileWrite(created_file_path, user["Name"], user["Time"], status)
                 found = True
                 break
     
