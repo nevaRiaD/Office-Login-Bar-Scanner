@@ -6,3 +6,5 @@
 - Sean clocked Out at 10:48:44
 - Sean clocked In at 10:49:46
 - Sean clocked Out at 10:49:51
+- Sean clocked In at 20:34:51
+- Sean clocked Out at 20:35:04

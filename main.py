@@ -1,6 +1,10 @@
 # Jaycee Alipio
 # 8/27/2023
-# Project: Clock in system that checks text file
+# Project: Program that uses clock-in system to check office hours
+
+import tkinter as tk
+from tkinter import filedialog, Text
+from tkinter import ttk
 
 import datetime
 import os
@@ -125,8 +129,17 @@ def idFound(user, name, role):
             pass
 
 def time_to_seconds(time_str):
-    hours, minutes, seconds = map(int, time_str.split(':'))
-    return hours * 3600 + minutes * 60 + seconds
+    try:
+        hours, minutes, seconds = map(int, time_str.split(':'))
+        total_seconds = (hours * 3600) + (minutes * 60) + seconds
+        return total_seconds
+    except ValueError:
+        return None
+
+def secondsToHHMMSS(total_seconds):
+    hours, remainder = divmod(total_seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 def clockTime(file_path):
     clocked_in_time = None
@@ -195,5 +208,13 @@ def main():
         if not found:
             print("ID not found. You have to be part of the ASMC Board of Directors")
         
+root = tk.Tk()
+
+canvas = tk.Canvas(root, height = 600, width = 900, bg="#020079")
+canvas.pack()
+
+frame = tk.Frame(root, bg="#020079")
+frame.place(relwidth=0.8, relheight=0.8, rely=0.1, relx=0.1)
+
 if __name__ == "__main__":
     main()
