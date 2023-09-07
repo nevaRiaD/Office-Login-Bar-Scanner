@@ -7,6 +7,7 @@ from clockFunctions import *
 from fileFunctions import *
 
 # Change path if files are moved
+file_directory = r"E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner"
 ID_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt'
 logs = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
 current_datetime = datetime.datetime.now()

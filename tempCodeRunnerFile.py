@@ -1,0 +1,1 @@
+E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner
