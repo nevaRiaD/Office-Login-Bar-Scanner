@@ -1,6 +1,6 @@
 import os
 from main import ID_path, formatted_date
-from clockFunctions import dateCheck
+from .clockFunctions import dateCheck
 
 def fileCreate(directory, file_name, name):
     try:

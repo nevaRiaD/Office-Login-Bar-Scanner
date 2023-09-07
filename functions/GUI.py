@@ -24,7 +24,7 @@ class Window(Frame):
         ASMC_logojov = ImageTk.PhotoImage(ASMC_logo)
         label1 = Label(self, image=ASMC_logojov)
         label1.image = ASMC_logojov
-        label1.place(relx=0.5, y=115, anchor=CENTER)
+        label1.place(relx=0.5, rely=0.25, anchor=CENTER)
         
         
         # clam, default, alt, classic themes

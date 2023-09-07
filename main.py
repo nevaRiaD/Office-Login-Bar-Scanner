@@ -3,13 +3,12 @@
 # Project: Program that uses clock-in system to check office hours
 
 import datetime
-from clockFunctions import *
-from fileFunctions import *
+from functions.clockFunctions import *
+from functions.fileFunctions import *
 
 # Change path if files are moved
-file_directory = r"E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner"
 ID_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt'
-logs = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
+logs_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
 current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
 
@@ -36,7 +35,7 @@ def main():
                 print(f"Status: Clocked {status}")
                 print(f"Date: {formatted_date}")
                 
-                created_file_path = fileCreate(logs, user["ID"], user["Name"])
+                created_file_path = fileCreate(logs_path, user["ID"], user["Name"])
                 
                 if status == "In":
                     print(f"Clock In Time: {user['Time']}")
