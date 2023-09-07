@@ -2,13 +2,14 @@
 # 8/27/2023
 # Project: Program that uses clock-in system to check office hours
 
-import datetime
+import datetime, os
 from functions.clockFunctions import *
 from functions.fileFunctions import *
 
 # Change path if files are moved
-ID_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\ID.txt'
-logs_path = r'E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner\logs'
+main_directory = os.path.dirname(__file__)
+ID_path = main_directory + "\ID.txt"
+logs_path = main_directory + "\logs"
 current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
 

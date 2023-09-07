@@ -3,8 +3,8 @@ from PIL import Image, ImageTk
 from tkinter import CENTER, Tk, BOTH
 from tkinter.ttk import Frame, Button, Label, Style
 
-file_directory = r"E:\VScode\Python Learning\barScan\Office-Login-Bar-Scanner"
-image1 = file_directory + "\\logoASMC_70.png"
+script_dir = os.path.dirname(__file__)
+image_path = os.path.join(script_dir, "..", "images", "logoASMC_70.png") 
 
 class Window(Frame):
     def __init__(self):
@@ -20,7 +20,7 @@ class Window(Frame):
         
         Style().configure("TFrame", background="#333")
         
-        ASMC_logo = Image.open(image1)
+        ASMC_logo = Image.open(image_path)
         ASMC_logojov = ImageTk.PhotoImage(ASMC_logo)
         label1 = Label(self, image=ASMC_logojov)
         label1.image = ASMC_logojov
