@@ -4,7 +4,7 @@ from tkinter import CENTER, Tk, BOTH
 from tkinter.ttk import Frame, Button, Label, Style
 
 script_dir = os.path.dirname(__file__)
-image_path = os.path.join(script_dir, "..", "images", "logoASMC_70.png") 
+image1_path = os.path.join(script_dir, "..", "images", "image.png") 
 
 class Window(Frame):
     def __init__(self):
@@ -20,7 +20,7 @@ class Window(Frame):
         
         Style().configure("TFrame", background="#333")
         
-        ASMC_logo = Image.open(image_path)
+        ASMC_logo = Image.open(image1_path)
         ASMC_logojov = ImageTk.PhotoImage(ASMC_logo)
         label1 = Label(self, image=ASMC_logojov)
         label1.image = ASMC_logojov

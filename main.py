@@ -1,7 +1,3 @@
-# Jaycee Alipio
-# 8/27/2023
-# Project: Program that uses clock-in system to check office hours
-
 import datetime, os
 from functions.clockFunctions import *
 from functions.fileFunctions import *
