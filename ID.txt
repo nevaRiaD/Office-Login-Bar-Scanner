@@ -1,3 +1,11 @@
-900111111 Sean President
+1 Sean President
 900791303 Jaycee_Alipio Vice_President
-900333333 Sage Director_of_Academic_Affairs
+3 Sage Director_of_Academic_Affairs
+4 Jessica Budget_and_Finance
+5 Ethan Director_of_Campus_Events
+6 Tara Director_of_Constitution_and_Standing_Rules
+7 Hatif Director_of_Public_Relations
+8 Judah Director_of_Student_Advocacy
+9 Bouchra Director_of_Student_Organizations
+10 Pearl Director_of_Student_Services
+11 tbd Director_of_Sustainability
