@@ -1,5 +1,6 @@
 import os
-from PIL import Image, ImageTk
+#from tkinter import *
+from PIL import ImageTk, Image
 import tkinter as tk
 from tkinter import CENTER, Tk, BOTH, Text
 from tkinter.ttk import Frame, Button, Label, Style
@@ -35,26 +36,23 @@ class Window(Frame):
         label2.image = Office_logojov
         label2.place(relx=0.48, rely=0.52, anchor=CENTER)
         
-        #text_label = Label(self, text="ENTER ID TO LOGIN")
-        #text_label.place(relx=0.5, rely=0.64, anchor=CENTER)
-        
-        
         self.text_widget = tk.Text(self, height=1, width=30)
         self.text_widget.place(relx=0.48, rely=0.59, anchor=CENTER)
         self.text_widget.insert("1.0", "INPUT ID TO LOGIN")
         
         def temp_text(e):
             self.text_widget.delete("1.0", "end")
-        
+            
         self.text_widget.bind("<FocusIn>", temp_text)
         
-
         
         # clam, default, alt, classic themes
         self.style = Style()
         self.style.theme_use("clam")
-    
-
+        
+    def text_widget_value(self):
+        return self.text_widget.get("1.0", "end-1c")
+        
     def centerWindow(self):
         w = 640
         h = 480
@@ -69,17 +67,12 @@ class Window(Frame):
         # calculate the required x and y coordinates
         self.master.geometry('%dx%d+%d+%d' % (w, h, x, y))
         
+#def main():
+#    root = Tk()
+#    root.geometry("250x150+300+300")
+#    root.resizable(False, False)
+#    app = Window()
+#    root.mainloop()
     
-        
-        
-        
-    
-def main():
-    root = Tk()
-    root.geometry("250x150+300+300")
-    root.resizable(False, False)
-    app = Window()
-    root.mainloop()
-    
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()

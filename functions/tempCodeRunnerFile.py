@@ -1,1 +1,1 @@
-, Image.ANTIALIAS
+ImageTk

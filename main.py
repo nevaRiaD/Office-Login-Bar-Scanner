@@ -1,6 +1,7 @@
 import datetime, os
 from functions.clockFunctions import *
 from functions.fileFunctions import *
+from functions.GUI import *
 
 # Change path if files are moved
 main_directory = os.path.dirname(__file__)
@@ -10,14 +11,21 @@ current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
 
 def main():
+    root = Tk()
+    root.geometry("250x150+300+300")
+    root.resizable(False, False)
+    app = Window()
+    root.mainloop()
+    
+    #app.function1()
+    
     id_name_title_pairs = fileOpen()
     
     if not id_name_title_pairs:
         return
     
     while True:
-        print("\nWelcome to the Moorpark ASMC Office Login!")
-        search_id = int(input("Enter the ID number to search for (or enter -1 to exit): "))
+        search_id = app.text_widget_value()
     
         if search_id == -1:
             print("Exiting the program.")
@@ -45,8 +53,8 @@ def main():
                 found = True
                 break
     
-        if not found:
-            print("ID not found. You have to be part of the ASMC Board of Directors")
+        #if not found:
+        #    print("ID not found. You have to be part of the ASMC Board of Directors")
         
 if __name__ == "__main__":
     main()
