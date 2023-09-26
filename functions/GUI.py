@@ -1,4 +1,4 @@
-import os
+import datetime, os
 from PIL import ImageTk, Image
 import tkinter as tk
 from tkinter import CENTER, Tk, BOTH, Text, Toplevel
@@ -12,10 +12,12 @@ image2_path = os.path.join(script_dir, "..", "images", "office_login_2.png")
 root = Tk()
 
 class Window(Frame):
-    def __init__(self, on_login_callback):
+    def __init__(self, on_login_callback, status_callback):
         super().__init__()
         self.initUI()
-        self.on_login_callback = on_login_callback 
+        self.on_login_callback = on_login_callback
+        self.status_callback = status_callback
+        self.labelStatus = None
     
     def initUI(self):
         self.master.title("ASMC Board of Directors: Office Login")
@@ -77,7 +79,49 @@ class Window(Frame):
         # calculate the required x and y coordinates
         self.master.geometry('%dx%d+%d+%d' % (w, h, x, y))
         
-def clockWindow(user, name, role, ID, status, date):
-    pop = Toplevel(root)
-    pop.title("CLOCKED IN")
-    pop.geometry("320x240")
+    def clockWindow(self, name, role, ID, status, date):
+        pop = Toplevel(root)
+        pop.title("CLOCKED STATUS")
+        pop.geometry("320x240")
+        root.eval(f'tk::PlaceWindow {str(pop)} center')
+
+        if status == "In":
+            check = "Out"
+        else:
+            check ="In"
+        
+        labelName = Label(pop, text=f"User: {name.replace('_', ' ')}")
+        labelName.place(relx=0.5, rely=0.1, anchor=CENTER)
+        
+        labelID = Label(pop, text=f"ID: {ID}")
+        labelID.place(relx=0.5, rely=.2, anchor=CENTER)
+        
+        labelRole = Label(pop, text=f"Role: {role.replace('_', ' ')}")
+        labelRole.place(relx=0.5, rely=0.3, anchor=CENTER)
+        
+        self.labelStatus = Label(pop, text=f"Status: Clocked {status}")
+        self.labelStatus.place(relx=0.5, rely=0.4, anchor=CENTER)
+        
+        labelDate = Label(pop, text=f"Date: {date}")
+        labelDate.place(relx=0.5, rely=0.5, anchor=CENTER)
+        
+        self.labelAsk = Label(pop, text=f"Would you like to clock {check.lower()} for {name.replace('_', ' ')}?")
+        self.labelAsk.place(relx=0.5, rely=0.6, anchor=CENTER)
+        
+        buttonClock = Button(pop, text=f"Clock {check}", command=lambda: self.clock(check))
+        buttonClock.place(relx=0.5, rely=0.75, anchor=CENTER)
+    
+    def updateStatus(self, new_status):
+        self.labelStatus.config(text=f"Status: Clocked {new_status}")
+        self.labelAsk.config(text=f"Clocked {new_status.upper()} at ")
+    
+    def clock(self, new_status):
+        status = new_status
+        self.updateStatus(new_status)
+        self.status_callback(new_status)
+        return status
+      
+
+    
+
+    

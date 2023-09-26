@@ -66,24 +66,7 @@ def idFound(user, name, role):
 
     clock_in_behavior = role_clock_in_behaviors.get(role, "Clocked In") # Default to "Clocked In" if role not found
     status = user["Status"]
-    
-    if status == "Out":
-        check = str(input(f"Would you like to clock in for {name}? [yes] [no] : "))
-        if check == "yes":
-            user["Status"] = "In"
-            user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
-            return "In"
-        else:
-            pass
-    else:
-        check = str(input(f"Would you like to clock out {name}? [yes] [no] : "))
-        if check == "yes":
-            user["Status"] = "Out"
-            user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
-            
-            return "Out"
-        else:
-            pass
+    return status
     
 def secondsToHHMMSS(total_seconds):
     hours, remainder = divmod(total_seconds, 3600)
