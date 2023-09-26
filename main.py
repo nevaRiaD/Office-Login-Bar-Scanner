@@ -21,6 +21,7 @@ def main():
             return
 
         search_id = int(app.text_widget_value())
+        app.text_widget.delete("1.0", tk.END)
         
         if search_id == -1:
             print("Exiting the program.")
