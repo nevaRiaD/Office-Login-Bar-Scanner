@@ -14,17 +14,13 @@ def main():
     root = Tk()
     root.geometry("250x150+300+300")
     root.resizable(False, False)
-    
     id_name_title_pairs = fileOpen()
     
-    
     def on_login(id_input):
-        
         if not id_name_title_pairs:
             return
 
         search_id = int(app.text_widget_value())
-        
         
         if search_id == -1:
             print("Exiting the program.")
