@@ -11,10 +11,10 @@ image1_path = os.path.join(script_dir, "..", "images", "image.png")
 image2_path = os.path.join(script_dir, "..", "images", "office_login_2.png")
 
 class Window(Frame):
-    def __init__(self):
+    def __init__(self, on_login_callback):
         super().__init__()
-        
         self.initUI()
+        self.on_login_callback = on_login_callback 
     
     def initUI(self):
         self.master.title("ASMC Board of Directors: Office Login")
@@ -51,8 +51,14 @@ class Window(Frame):
         self.style.theme_use("clam")
         
     def text_widget_value(self):
-        return self.text_widget.get("1.0", "end-1c")
-        
+        inputValue = self.text_widget.get("1.0", 'end-1c')
+        return inputValue
+    
+    def handle_login(self):
+        input_value = self.text_widget_value()
+        self.on_login_callback(input_value)
+    
+
     def centerWindow(self):
         w = 640
         h = 480

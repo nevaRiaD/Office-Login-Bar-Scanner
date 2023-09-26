@@ -14,22 +14,14 @@ def main():
     root = Tk()
     root.geometry("250x150+300+300")
     root.resizable(False, False)
-    app = Window()
-    root.mainloop()
     
-    #app.function1()
+    def on_login(id_input):
+        id_name_title_pairs = fileOpen()
     
-    id_name_title_pairs = fileOpen()
+        if not id_name_title_pairs:
+            return
     
-    if not id_name_title_pairs:
-        return
-    
-    while True:
         search_id = app.text_widget_value()
-    
-        if search_id == -1:
-            print("Exiting the program.")
-            break
         found = False
         
         for user in id_name_title_pairs:
@@ -53,8 +45,11 @@ def main():
                 found = True
                 break
     
-        #if not found:
-        #    print("ID not found. You have to be part of the ASMC Board of Directors")
-        
+        if not found:
+            print("ID not found. You have to be part of the ASMC Board of Directors")
+    
+    app = Window(on_login)
+    root.mainloop()
+    
 if __name__ == "__main__":
     main()
