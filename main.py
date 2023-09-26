@@ -29,7 +29,7 @@ def main():
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
                 status = idFound(user, user["Name"], user["Role"])
-                clockWindow(user, user["Name"], user["Role"], user["ID"], status, formatted_date)
+                app.clockWindow(user["Name"], user["Role"], user["ID"], status, formatted_date)
                 print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")
                 print(f"Status: Clocked {status}")
@@ -46,8 +46,11 @@ def main():
                     print(f"Total Time: {clockTime(created_file_path, user['Time'])}")
                     fileWrite(created_file_path, user["Name"], user["Time"], status)
                 found = True
-    
-    app = Window(on_login)
+
+    def update_status(new_status):
+        print(f"Updated status in main.py: {new_status}")
+        
+    app = Window(on_login, update_status)
     root.mainloop()
     
 if __name__ == "__main__":
