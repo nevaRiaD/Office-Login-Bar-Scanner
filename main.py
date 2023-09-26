@@ -1,4 +1,4 @@
-import datetime, os
+import datetime, os, sys
 from functions.clockFunctions import *
 from functions.fileFunctions import *
 from functions.GUI import *
@@ -15,17 +15,24 @@ def main():
     root.geometry("250x150+300+300")
     root.resizable(False, False)
     
+    id_name_title_pairs = fileOpen()
+    
+    
     def on_login(id_input):
-        id_name_title_pairs = fileOpen()
         
         if not id_name_title_pairs:
             return
-    
-        search_id = app.text_widget_value()
-        print(search_id)
+
+        search_id = int(app.text_widget_value())
+        
+        
+        if search_id == -1:
+            print("Exiting the program.")
+            sys.exit()
         
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
+                print("User found:", user)
                 status = idFound(user, user["Name"], user["Role"])
                 print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")

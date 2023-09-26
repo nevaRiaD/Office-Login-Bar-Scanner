@@ -60,7 +60,6 @@ class Window(Frame):
     def handle_login(self):
         input_value = self.text_widget_value()
         self.on_login_callback(input_value)
-    
 
     def centerWindow(self):
         w = 640
