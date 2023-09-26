@@ -47,7 +47,6 @@ def main():
                     print(f"Total Time: {clockTime(created_file_path, user['Time'])}")
                     fileWrite(created_file_path, user["Name"], user["Time"], status)
                 found = True
-                break
     
     app = Window(on_login)
     root.mainloop()
