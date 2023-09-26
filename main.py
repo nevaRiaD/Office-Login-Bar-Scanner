@@ -17,12 +17,12 @@ def main():
     
     def on_login(id_input):
         id_name_title_pairs = fileOpen()
-    
+        
         if not id_name_title_pairs:
             return
     
         search_id = app.text_widget_value()
-        found = False
+        print(search_id)
         
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
@@ -44,9 +44,6 @@ def main():
                     fileWrite(created_file_path, user["Name"], user["Time"], status)
                 found = True
                 break
-    
-        if not found:
-            print("ID not found. You have to be part of the ASMC Board of Directors")
     
     app = Window(on_login)
     root.mainloop()

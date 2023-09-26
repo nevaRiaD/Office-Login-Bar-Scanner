@@ -40,6 +40,9 @@ class Window(Frame):
         self.text_widget.place(relx=0.48, rely=0.59, anchor=CENTER)
         self.text_widget.insert("1.0", "INPUT ID TO LOGIN")
         
+        self.login_button = Button(self, text="Login", command=self.handle_login)
+        self.login_button.place(relx=0.48, rely=0.75, anchor=CENTER)
+        
         def temp_text(e):
             self.text_widget.delete("1.0", "end")
             
