@@ -29,7 +29,6 @@ def main():
         
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
-                print("User found:", user)
                 status = idFound(user, user["Name"], user["Role"])
                 print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")
