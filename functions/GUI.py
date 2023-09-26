@@ -1,14 +1,15 @@
 import os
-#from tkinter import *
 from PIL import ImageTk, Image
 import tkinter as tk
-from tkinter import CENTER, Tk, BOTH, Text
+from tkinter import CENTER, Tk, BOTH, Text, Toplevel
 from tkinter.ttk import Frame, Button, Label, Style
 from tkinter import messagebox as mbox
 
 script_dir = os.path.dirname(__file__)
 image1_path = os.path.join(script_dir, "..", "images", "image.png")
 image2_path = os.path.join(script_dir, "..", "images", "office_login_2.png")
+
+root = Tk()
 
 class Window(Frame):
     def __init__(self, on_login_callback):
@@ -61,7 +62,7 @@ class Window(Frame):
     def handle_login(self):
         input_value = self.text_widget_value()
         self.on_login_callback(input_value)
-
+        
     def centerWindow(self):
         w = 640
         h = 480
@@ -76,12 +77,7 @@ class Window(Frame):
         # calculate the required x and y coordinates
         self.master.geometry('%dx%d+%d+%d' % (w, h, x, y))
         
-#def main():
-#    root = Tk()
-#    root.geometry("250x150+300+300")
-#    root.resizable(False, False)
-#    app = Window()
-#    root.mainloop()
-    
-#if __name__ == '__main__':
-#    main()
+def clockWindow(user, name, role, ID, status, date):
+    pop = Toplevel(root)
+    pop.title("CLOCKED IN")
+    pop.geometry("320x240")

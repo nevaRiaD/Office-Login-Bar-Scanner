@@ -11,7 +11,6 @@ current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
 
 def main():
-    root = Tk()
     root.geometry("250x150+300+300")
     root.resizable(False, False)
     id_name_title_pairs = fileOpen()
@@ -30,6 +29,7 @@ def main():
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
                 status = idFound(user, user["Name"], user["Role"])
+                clockWindow(user, user["Name"], user["Role"], user["ID"], status, formatted_date)
                 print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")
                 print(f"Status: Clocked {status}")
