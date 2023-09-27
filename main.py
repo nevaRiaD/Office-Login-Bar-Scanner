@@ -30,6 +30,7 @@ def main():
             if user["ID"] == search_id:
                 status = idFound(user, user["Name"], user["Role"])
                 app.clockWindow(user["Name"], user["Role"], user["ID"], status, formatted_date)
+                status = app.clock
                 print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
                 print(f"Role: {user['Role'].replace('_', ' ')}")
                 print(f"Status: Clocked {status}")

@@ -82,3 +82,4 @@
 - Jaycee Alipio clocked Out at None
 - Jaycee Alipio clocked Out at None
 - Jaycee Alipio clocked Out at None
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
