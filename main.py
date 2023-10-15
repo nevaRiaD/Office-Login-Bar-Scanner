@@ -5,8 +5,8 @@ from functions.GUI import *
 
 # Change path if files are moved
 main_directory = os.path.dirname(__file__)
-ID_path = main_directory + "\ID.txt"
-logs_path = main_directory + "\logs"
+ID_path = main_directory + "/ID.txt"
+logs_path = main_directory + "/logs"
 current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
 
