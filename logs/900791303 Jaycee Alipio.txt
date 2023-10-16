@@ -86,3 +86,19 @@
 
 10-14-2023
 - Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+
+10-15-2023
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+
+10-16-2023
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+- Jaycee Alipio clocked Out at None
+- Jaycee Alipio clocked Out at None
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at None
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:30:58
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:36:21
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:38:24
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:39:14

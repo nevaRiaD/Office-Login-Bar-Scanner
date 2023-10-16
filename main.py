@@ -14,7 +14,7 @@ def main():
     root.geometry("250x150+300+300")
     root.resizable(False, False)
     id_name_title_pairs = fileOpen()
-    
+     
     def on_login(id_input):
         if not id_name_title_pairs:
             return
@@ -28,14 +28,11 @@ def main():
         
         for user in id_name_title_pairs:
             if user["ID"] == search_id:
+                user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
                 status = idFound(user, user["Name"], user["Role"])
                 app.clockWindow(user["Name"], user["Role"], user["ID"], status, formatted_date)
                 status = app.clock
-                print(f"\nUser: {user['Name'].replace('_', ' ')} (ID: {user['ID']})")
-                print(f"Role: {user['Role'].replace('_', ' ')}")
-                print(f"Status: Clocked {status}")
-                print(f"Date: {formatted_date}")
-                
+                print(f"Status: {status}")
                 created_file_path = fileCreate(logs_path, user["ID"], user["Name"])
                 
                 if status == "In":

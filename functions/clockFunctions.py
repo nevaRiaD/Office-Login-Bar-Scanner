@@ -47,7 +47,7 @@ def dateCheck(file_path):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         return False    
-    
+
 def idFound(user, name, role):
     name = name.replace('_', ' ')
     role_clock_in_behaviors = {
@@ -66,6 +66,7 @@ def idFound(user, name, role):
 
     clock_in_behavior = role_clock_in_behaviors.get(role, "Clocked In") # Default to "Clocked In" if role not found
     status = user["Status"]
+    
     return status
     
 def secondsToHHMMSS(total_seconds):

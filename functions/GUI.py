@@ -116,12 +116,7 @@ class Window(Frame):
         self.labelAsk.config(text=f"Clocked {new_status.upper()} at ")
     
     def clock(self, new_status):
-        status = new_status
         self.updateStatus(new_status)
         self.status_callback(new_status)
-        return status
-      
-
-    
-
+        return new_status
     
