@@ -32,7 +32,7 @@ def main():
                 status = idFound(user, user["Name"], user["Role"])
                 app.clockWindow(user["Name"], user["Role"], user["ID"], status, formatted_date)
                 
-                new_status = str(update_status)
+                new_status = update_status(status)
                 print(f"Status: {status}")
                 created_file_path = fileCreate(logs_path, user["ID"], user["Name"])
                 
