@@ -118,5 +118,4 @@ class Window(Frame):
     def clock(self, new_status):
         self.updateStatus(new_status)
         self.status_callback(new_status)
-        return new_status
     

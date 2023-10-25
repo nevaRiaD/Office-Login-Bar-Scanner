@@ -102,3 +102,14 @@
 - Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:36:21
 - Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:38:24
 - Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 13:39:14
+
+10-24-2023
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:05:23
+- Jaycee Alipio clocked Out at 23:15:31
+- Jaycee Alipio clocked Out at 23:15:41
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:17:24
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:23:07
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:23:42
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:29:52
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:30:40
+- Jaycee Alipio clocked <bound method Window.clock of <functions.GUI.Window object .!window>> at 23:31:46

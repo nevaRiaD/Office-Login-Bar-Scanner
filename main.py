@@ -9,6 +9,7 @@ ID_path = main_directory + "/ID.txt"
 logs_path = main_directory + "/logs"
 current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
+new_status = 0
 
 def main():
     root.geometry("250x150+300+300")
@@ -31,22 +32,25 @@ def main():
                 user["Time"] = datetime.datetime.now().strftime("%H:%M:%S")
                 status = idFound(user, user["Name"], user["Role"])
                 app.clockWindow(user["Name"], user["Role"], user["ID"], status, formatted_date)
-                status = app.clock
+                
+                new_status = str(update_status)
                 print(f"Status: {status}")
                 created_file_path = fileCreate(logs_path, user["ID"], user["Name"])
                 
-                if status == "In":
+                if new_status == "In":
                     print(f"Clock In Time: {user['Time']}")
-                    fileWrite(created_file_path, user["Name"], user["Time"], status)
+                    fileWrite(created_file_path, user["Name"], user["Time"], new_status)
                     
-                else:
+                if new_status == "Out":
                     print(f"Clock Out Time: {user['Time']}")
                     print(f"Total Time: {clockTime(created_file_path, user['Time'])}")
-                    fileWrite(created_file_path, user["Name"], user["Time"], status)
+                    fileWrite(created_file_path, user["Name"], user["Time"], new_status)
                 found = True
+        
 
     def update_status(new_status):
         print(f"Updated status in main.py: {new_status}")
+        return new_status
         
     app = Window(on_login, update_status)
     root.mainloop()
