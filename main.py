@@ -9,7 +9,6 @@ ID_path = main_directory + "/ID.txt"
 logs_path = main_directory + "/logs"
 current_datetime = datetime.datetime.now()
 formatted_date = current_datetime.strftime("%m-%d-%Y")
-new_status = 0
 
 def main():
     root.geometry("250x150+300+300")
